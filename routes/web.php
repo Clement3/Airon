@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/page/{slug}', 'PageController@show');
+
+// Admin Routing
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    // Page
+    Route::resource('page', 'PageController', ['except' => [
+        'show'
+    ]]);      
+});
