@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,20 +12,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/page/{slug}', 'PageController@show');
 
 // Admin Routing
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-    // Page
-    Route::resource('page', 'PageController', ['except' => [
+
+    // Pages
+    Route::resource('pages', 'PageController', ['except' => [
         'show'
-    ]]);      
+    ]]); 
+
+    // Users
+    Route::resource('users', 'UserController', ['except' => [
+        'create', 'store'
+    ]]); 
+
+    // Users
+    Route::resource('categories', 'CategoryController', ['except' => [
+        'show',
+    ]]);                              
+});
+
+Route::get('/test/qfdg', function(Request $request) {
 });

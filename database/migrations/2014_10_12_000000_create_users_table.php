@@ -21,8 +21,10 @@ class CreateUsersTable extends Migration
             $table->boolean('confirmed')->nullable();
             $table->boolean('verified')->nullable();
             $table->boolean('banned')->nullable();
+            $table->boolean('admin')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -10,7 +10,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ action('Admin\PageController@store') }}">
                         {{ csrf_field() }}
-                        {{ method_field('PUT') }}
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label">Titre</label>

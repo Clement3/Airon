@@ -9,6 +9,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $casts = [
+        'admin' => 'boolean',
+        'confirmed' => 'boolean',
+        'verified' => 'boolean',
+        'banned' => 'boolean',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,4 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
 }

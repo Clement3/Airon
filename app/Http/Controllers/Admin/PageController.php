@@ -8,6 +8,11 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function index() 
     {
         return view('page.admin.index', ['pages' => Page::all()]);
@@ -33,7 +38,7 @@ class PageController extends Controller
             'menu_id' => $request->input('menu_id')
         ]);
 
-        return redirect(action('Admin\PageController@index'))->with('success', 'Nouvelle page!');       
+        return redirect(action('Admin\PageController@index'))->with('success', 'La page à bien été créer');       
     }
 
     public function edit($id) 
@@ -45,13 +50,19 @@ class PageController extends Controller
     {
         $page = Page::findOrFail($id);
 
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'menu_id' => 'numeric|nullable'
+        ]);
+
         $page->title = $request->input('title');
         $page->slug = str_slug($request->input('title'), '-');
         $page->content = $request->input('content');
         $page->menu_id = $request->input('menu_id');
         $page->save();
     
-        return redirect(action('Admin\PageController@index'))->with('success', 'Nouvelle page!');     
+        return redirect(action('Admin\PageController@index'))->with('success', 'La page à bien été editer');     
     }
 
     public function destroy($id) 
