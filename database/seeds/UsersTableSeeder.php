@@ -16,6 +16,11 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'admin' => 1,
+            'created_at' => Date::now(),
         ]);
+        
+        DB::table('profiles')->insert([
+            'user_id' => 1,
+        ]);       
     }
 }

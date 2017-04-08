@@ -1,16 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
+<div class="container grid-960">
+    <div class="columns">
+        <div class="column col-12">
+            <div class="empty">
+                <div class="empty-icon">
+                    <i class="icon icon-people"></i>
                 </div>
-            </div>
+                <h4 class="empty-title">You have no new messages</h4>
+                <p class="empty-subtitle">Click the button to start a conversation.</p>
+                <div class="empty-action">
+                    <button class="btn btn-primary">Send a message</button>
+                </div>
+            </div>   
         </div>
     </div>
 </div>

@@ -21,64 +21,108 @@
     </script>
 </head>
 <body>
-    <div id="app">   
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ route('home') }}">@lang('app.home')</a></li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+    <div id="app">
+        <header class="section-header">
+            <section class="container grid-960">
+                <nav class="navbar">
+                    <section class="navbar-primary">
+                        <a href="{{ url('/') }}" class="navbar-brand mr-10">{{ config('app.name', 'Laravel') }}</a>
+                    </section>
+                    <section class="navbar-section">
+                        <a href="{{ url('/') }}" class="btn btn-link">@lang('app.home')</a>
+                    </section>
+                    <section class="navbar-section">
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">@lang('app.login')</a></li>
-                            <li><a href="{{ route('register') }}">@lang('app.register')</a></li>
+                        <a href="{{ route('login') }}" class="btn btn-link">@lang('app.login')</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary">@lang('app.register')</a>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            @lang('app.logout')
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
+                        <div class="dropdown dropdown-right">
+                            <a href="#" class="avatar-dropdown dropdown-toggle" tabindex="0">
+                                <figure class="avatar" data-initial="{{ Auth::user()->nameForAvatar() }}" style="background-color: #5764c6;"></figure> <i class="icon icon-caret"></i>
+                            </a>           
+                            <ul class="menu">  
+                                <li class="menu-item">
+                                    <a href="{{ route('profile', ['user' => Auth::user()->name]) }}">@lang('app.profile')</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{{ action('UserController@getSettings') }}">@lang('app.settings')</a>
+                                </li>                                 
+                                <li class="menu-item">
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">@lang('app.logout')</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>                                     
+                                </li>                                                                    
+                            </ul>       
+                        </div>                                          
                         @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                    </section>
+                </nav>
+            </section>
+        </header>
+
+        @if (Auth::check())
+            @if (!Auth::user()->confirmed)
+                <section class="not-confirm text-center">
+                    @lang('app.not-confirm') <a href=""><i class="icon icon-link"></i>@lang('app.not-confirm-link')</a>
+                </section>
+            @endif
+        @endif
+
+        <div class="margin-header"></div>
 
         @yield('content')
+
+        <footer>
+            <a href="" id="back-to-top">
+                <div class="back-to-top">
+                    <p>Retour en haut</p>
+                </div>
+            </a>
+            <section class="links">
+                <div class="container grid-960">
+                    <div class="columns">
+                        <div class="column col-3 col-sm-12">
+                            <ul>
+                                <li class="links-title">Mentions légales</li>
+                                <li><a href="">Règles de confidentialité</a></li>
+                                <li><a href="">Conditions d’utilisation</a></li>
+                                <li><a href="">Mentions légales</a></li>
+                            </ul>
+                         </div>
+                        <div class="column col-3 col-sm-12">
+                            <ul>
+                                <li class="links-title">Besoin d'aide ?</li>
+                                <li><a href="">Centre d'aide</a></li>
+                                <li><a href="">Support</a></li>
+                                <li><a href="">Nous contacter</a></li>
+                            </ul>
+                         </div>
+                        <div class="column col-3 col-sm-12">
+                            <ul>
+                                <li class="links-title">Besoin d'aide ?</li>
+                                <li><a href="">Centre d'aide</a></li>
+                                <li><a href="">Support</a></li>
+                                <li><a href="">Nous contacter</a></li>
+                            </ul>
+                         </div>
+                        <div class="column col-3 col-sm-12">
+                            <ul>
+                                <li class="links-title">Mentions légales</li>
+                                <li><a href="">Règles de confidentialité</a></li>
+                                <li><a href="">Conditions d’utilisation</a></li>
+                                <li><a href="">Mentions légales</a></li>
+                            </ul>
+                         </div>                                                                         
+                    </div>
+                </div>
+            </section>
+            <section class="copyright">
+                <div class="container grid-960">
+                    <p>© 2017 Monsterdeals, Tout droit réservés.</p>
+                </div>
+            </section>           
+        </footer>
     </div>
 
     <!-- Scripts -->

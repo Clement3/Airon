@@ -34,8 +34,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+
+    public function locations()
+    {
+        return $this->hasMany('App\Models\Location');
+    }  
+
     public function isAdmin()
     {
         return $this->admin;
     }
+
+    public function nameForAvatar()
+    {
+        return $this->name[0];
+    }
+          
 }
