@@ -28,8 +28,8 @@ class LocationController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255|string',
             'fullname' => 'required|max:255|string',
-            'street' => 'required|max:255|string',
-            'street_more' => 'max:255|string|nullable',
+            'address' => 'required|max:255|string',
+            'address_more' => 'max:255|string|nullable',
             'state' => 'max:255|string|nullable',
             'zipcode' => 'required|max:255|string',
             'phone' => 'required|numeric',
@@ -60,8 +60,8 @@ class LocationController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:255|string',
                 'fullname' => 'required|max:255|string',
-                'street' => 'required|max:255|string',
-                'street_more' => 'max:255|string|nullable',
+                'address' => 'required|max:255|string',
+                'address_more' => 'max:255|string|nullable',
                 'state' => 'max:255|string|nullable',
                 'zipcode' => 'required|max:255|string',
                 'phone' => 'required|numeric',
@@ -69,8 +69,8 @@ class LocationController extends Controller
 
             $location->name = $request->input('name');
             $location->fullname = $request->input('fullname');
-            $location->street = $request->input('street');
-            $location->street_more = $request->input('street_more');
+            $location->address = $request->input('street');
+            $location->address_more = $request->input('street_more');
             $location->state = $request->input('state');
             $location->zipcode = $request->input('zipcode');
             $location->phone = $request->input('phone');

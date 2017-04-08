@@ -3,7 +3,10 @@
 @section('content')
 <div class="container grid-960">
     <div class="columns">
-        <div class="column col-8">
+    
+        @include('user.menu')
+
+        <div class="column col-8 col-sm-12">
             <div class="panel">
                 <div class="panel-header">
                     <div class="panel-title">
@@ -17,10 +20,10 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="name">Name</label>
+                                <label class="form-label" for="name">@lang('app.form.address_name')</label>
                             </div>
                             <div class="col-5">
-                                <input class="form-input{{ $errors->has('name') ? ' is-danger' : '' }}" type="text" id="name" name="name" value="{{ old('name') }}" required autofocus />
+                                <input class="form-input{{ $errors->has('name') ? ' is-danger' : '' }}" type="text" id="name" name="name" value="{{ old('name') }}" required />
                                 @if ($errors->has('name'))
                                     <p class="form-input-hint">{{ $errors->first('name') }}</p>
                                 @endif
@@ -33,14 +36,14 @@
                             </div>
                         </div>
 
-                        <div class="divider"></div>
+                        <div class="divider text-center margin-divider" data-content="@lang('app.my_address')"></div>
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="fullname">Full Name</label>
+                                <label class="form-label" for="fullname">@lang('app.form.fullname')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('fullname') ? ' is-danger' : '' }}" type="text" id="fullname" name="fullname" value="{{ old('fullname') }}" required autofocus />
+                                <input class="form-input{{ $errors->has('fullname') ? ' is-danger' : '' }}" type="text" id="fullname" name="fullname" value="{{ old('fullname') }}" required />
                                 @if ($errors->has('fullname'))
                                     <p class="form-input-hint">{{ $errors->first('fullname') }}</p>
                                 @endif
@@ -49,12 +52,12 @@
 
                          <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="street">Street</label>
+                                <label class="form-label" for="address">@lang('app.form.address')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('street') ? ' is-danger' : '' }}" type="text" id="street" name="street" value="{{ old('street') }}" required autofocus />
-                                @if ($errors->has('street'))
-                                    <p class="form-input-hint">{{ $errors->first('street') }}</p>
+                                <input class="form-input{{ $errors->has('address') ? ' is-danger' : '' }}" type="text" id="address" name="address" value="{{ old('address') }}" required />
+                                @if ($errors->has('address'))
+                                    <p class="form-input-hint">{{ $errors->first('address') }}</p>
                                 @endif
                             </div>
                         </div>
@@ -63,19 +66,19 @@
                             <div class="col-3">
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('street_more') ? ' is-danger' : '' }}" type="text" id="street_more" name="street_more" value="{{ old('street_more') }}" />
-                                @if ($errors->has('street_more'))
-                                    <p class="form-input-hint">{{ $errors->first('street_more') }}</p>
+                                <input class="form-input{{ $errors->has('address_more') ? ' is-danger' : '' }}" type="text" id="address_more" name="address_more" placeholder="@lang('app.form.address_more')" value="{{ old('address_more') }}" />
+                                @if ($errors->has('address_more'))
+                                    <p class="form-input-hint">{{ $errors->first('address_more') }}</p>
                                 @endif
                             </div>
                         </div>
 
                          <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="city">City</label>
+                                <label class="form-label" for="city">@lang('app.form.city')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('city') ? ' is-danger' : '' }}" type="text" id="city" name="city" value="{{ old('city') }}" required autofocus />
+                                <input class="form-input{{ $errors->has('city') ? ' is-danger' : '' }}" type="text" id="city" name="city" value="{{ old('city') }}" required />
                                 @if ($errors->has('city'))
                                     <p class="form-input-hint">{{ $errors->first('city') }}</p>
                                 @endif
@@ -84,7 +87,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="state">State</label>
+                                <label class="form-label" for="state">@lang('app.form.state')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('state') ? ' is-danger' : '' }}" type="text" id="state" name="state" value="{{ old('state') }}" />
@@ -96,10 +99,10 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="zipcode">Zip code</label>
+                                <label class="form-label" for="zipcode">@lang('app.form.zipcode')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('zipcode') ? ' is-danger' : '' }}" type="text" id="zipcode" name="zipcode" value="{{ old('zipcode') }}" required autofocus />
+                                <input class="form-input{{ $errors->has('zipcode') ? ' is-danger' : '' }}" type="text" id="zipcode" name="zipcode" value="{{ old('zipcode') }}" required />
                                 @if ($errors->has('zipcode'))
                                     <p class="form-input-hint">{{ $errors->first('zipcode') }}</p>
                                 @endif
@@ -108,23 +111,20 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="phone">Phone</label>
+                                <label class="form-label" for="phone">@lang('app.form.phone')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input{{ $errors->has('phone') ? ' is-danger' : '' }}" type="text" id="phone" name="phone" value="{{ old('phone') }}" required autofocus />
+                                <input class="form-input{{ $errors->has('phone') ? ' is-danger' : '' }}" type="text" id="phone" name="phone" value="{{ old('phone') }}" required />
                                 @if ($errors->has('phone'))
                                     <p class="form-input-hint">{{ $errors->first('phone') }}</p>
                                 @endif
                             </div>
                         </div>    
 
-                        <button class="btn btn-primary btn-block" type="submit">Créer l'adresse</button>  
+                        <button class="btn btn-primary btn-block mt-20" type="submit">@lang('app.form.create_address')</button>  
                     </form>     
                 </div>        
             </div>
-        </div>
-        <div class="column col-4">
-            @include('user.menu')        
         </div>
     </div>
 </div>

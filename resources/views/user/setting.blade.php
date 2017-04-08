@@ -3,6 +3,9 @@
 @section('content')
 <div class="container grid-960">
     <div class="columns">
+    
+        @include('user.menu')
+
         <div class="column col-8 col-sm-12">
             <div class="panel">
                 <div class="panel-header">
@@ -12,37 +15,34 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="firstname">Firstname</label>
+                                <label class="form-label" for="firstname">@lang('app.form.firstname')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input" type="text" id="firstname" name="firstname" placeholder="Name" value="{{ Auth::user()->profile->firstname }}" />
+                                <input class="form-input" type="text" id="firstname" name="firstname" value="{{ Auth::user()->profile->firstname }}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="lastname">Lastname</label>
+                                <label class="form-label" for="lastname">@lang('app.form.lastname')</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-input" type="text" id="lastname" name="lastname" placeholder="Name" value="{{ Auth::user()->profile->lastname }}" />
+                                <input class="form-input" type="text" id="lastname" name="lastname" value="{{ Auth::user()->profile->lastname }}" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="birthdate">Birth date</label>
+                                <label class="form-label" for="birthdate">@lang('app.form.birthdate')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input" type="date" id="birthdate" name="birthdate">
                             </div>
                         </div>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-primary btn-block">Sauvegarder</button>
+
+                        <button class="btn btn-primary btn-block mt-20" type="submit">@lang('app.form.submit')</button>
+
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="column col-4 col-sm-12">
-            @include('user.menu')        
         </div>
     </div>
 </div>

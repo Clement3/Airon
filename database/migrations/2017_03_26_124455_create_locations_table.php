@@ -20,8 +20,8 @@ class CreateLocationsTable extends Migration
             $table->boolean('main')->nullable();   
             $table->string('name');
             $table->string('fullname');
-            $table->string('street');
-            $table->string('street_more')->nullable();
+            $table->string('address');
+            $table->string('address_more')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('zipcode');

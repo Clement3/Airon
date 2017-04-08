@@ -3,6 +3,9 @@
 @section('content')
 <div class="container grid-960">
     <div class="columns">
+
+        @include('user.menu')   
+         
         <div class="column col-8 col-sm-12">
             <div class="panel">
                 <div class="panel-header">
@@ -36,20 +39,20 @@
                                 <div class="address-body">
                                     <ul>
                                         <li><strong>{{ $location->fullname }}</strong></li>
-                                        <li>{{ $location->street }}</li>
-                                        <li>{{ $location->street_more }}</li>
+                                        <li>{{ $location->address }}</li>
+                                        <li>{{ $location->address_more }}</li>
                                         <li>{{ $location->city }}, {{ $location->zipcode }}</li>
                                         <li>France</li>
                                         <li>{{ $location->phone }}</li>
                                     </ul>                                
                                 </div>
                                 <div class="address-footer">
-                                    <a href="{{ action('LocationController@edit', ['id' => $location->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ action('LocationController@edit', ['id' => $location->id]) }}" class="btn btn-primary btn-sm">@lang('app.edit')</a>
                                     <a href="{{ action('LocationController@destroy', ['id' => $location->id]) }}" 
                                         class="btn btn-primary btn-sm"
                                         onclick="event.preventDefault();
                                                     document.getElementById('destroy-form').submit();">
-                                        Delete
+                                        @lang('app.delete')
                                     </a>
 
                                     <form id="destroy-form" action="{{ action('LocationController@destroy', ['id' => $location->id]) }}" method="POST" style="display: none;">
@@ -63,9 +66,6 @@
                     </div>                    
                 </div>
             </div>
-        </div>
-        <div class="column col-4 col-sm-12">
-            @include('user.menu')        
         </div>
     </div>
 </div>
