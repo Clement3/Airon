@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', Lang::get('app.login'))
+
 @section('content')
 <div class="container grid-480">
     <div class="columns">
@@ -13,7 +15,7 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="email">@lang('app.form.email')</label>
+                                <label class="form-label" for="email">@lang('form.email')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('email') ? ' is-danger' : '' }}" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus />
@@ -25,7 +27,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="password">@lang('app.form.password')</label>
+                                <label class="form-label" for="password">@lang('form.password')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('password') ? ' is-danger' : '' }}" type="password" id="password" name="password" value="{{ old('password') }}" required autofocus />
@@ -40,7 +42,7 @@
                             <div class="col-9">
                                 <label class="form-checkbox">
                                     <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <i class="form-icon"></i> @lang('app.form.remember_me')
+                                    <i class="form-icon"></i> @lang('form.remember_me')
                                 </label>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Helpers\UniqueIdentifier;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,7 +12,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $id = UniqueIdentifier::generate('users');
+
         DB::table('users')->insert([
+            'id' => $id,
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
@@ -20,7 +24,7 @@ class UsersTableSeeder extends Seeder
         ]);
         
         DB::table('profiles')->insert([
-            'user_id' => 1,
+            'user_id' => $id,
         ]);       
     }
 }

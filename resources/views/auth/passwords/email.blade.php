@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', Lang::get('app.reset_password'))
+
 @section('content')
 <div class="container grid-480">
     <div class="columns">
@@ -22,7 +24,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="email">@lang('app.form.email')</label>
+                                <label class="form-label" for="email">@lang('form.email')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('email') ? ' is-danger' : '' }}" type="text" id="email" name="email" value="{{ old('email') }}" required />

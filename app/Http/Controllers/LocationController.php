@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Location;
+use App\Helpers\UniqueIdentifier;
 
 class LocationController extends Controller
 {
@@ -15,7 +16,7 @@ class LocationController extends Controller
 
     public function index()
     {
-        return view('location.index', ['locations' => Auth::user()->locations->all()]);
+        return view('location.index', ['locations' => Auth::user()->locations->sortByDesc('main')]);
     }
 
     public function create()
@@ -35,7 +36,12 @@ class LocationController extends Controller
             'phone' => 'required|numeric',
         ]);
 
-        $location = Auth::user()->locations()->create($request->all());
+        $data = array_merge($request->all(), [
+            'id' => UniqueIdentifier::generate('locations'), 
+            'Country' => 'France'
+        ]);
+
+        $location = Auth::user()->locations()->create($data);
 
         // If the 'main' checkbox is checked we set main on this location
         if ($request->has('main')) {
@@ -67,21 +73,23 @@ class LocationController extends Controller
                 'phone' => 'required|numeric',
             ]);
 
-            $location->name = $request->input('name');
-            $location->fullname = $request->input('fullname');
-            $location->address = $request->input('street');
-            $location->address_more = $request->input('street_more');
-            $location->state = $request->input('state');
-            $location->zipcode = $request->input('zipcode');
-            $location->phone = $request->input('phone');
+            $location->update($request->only([
+                'name', 
+                'fullname',
+                'address',
+                'address_more',
+                'state',
+                'zipcode',
+                'phone'
+            ]));
 
-            $location->save();
-
+            $location->removeMain($user);
+            
             // If the 'main' checkbox is checked we set main on this location
             if ($request->has('main')) {
                 $location->setMain($user);
             }
-
+            
             return redirect(action('LocationController@index'));         
         }         
     }
@@ -112,5 +120,7 @@ class LocationController extends Controller
                 return redirect(action('LocationController@index'));
             } 
         }
+
+        return redirect(action('LocationController@index'));
     }
 }

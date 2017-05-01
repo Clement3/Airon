@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+    
+    public $incrementing = false;
 
     protected $casts = [
         'admin' => 'boolean',
@@ -16,20 +19,10 @@ class User extends Authenticatable
         'banned' => 'boolean',
     ];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -43,6 +36,21 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Location');
     }  
+
+    public function confirmation()
+    {
+        return $this->hasOne('App\Models\Confirmation');
+    }
+
+    public function items()
+    {
+        return $this->hasMany('App\Models\Item');
+    }  
+
+    public function favorites()
+    {
+        return $this->belongsToMany('App\Models\Item', 'favorites', 'user_id', 'item_id')->withTimeStamps();
+    }
 
     public function isAdmin()
     {

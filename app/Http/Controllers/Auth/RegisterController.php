@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Confirmation;
+use App\Mail\ConfirmationSend;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use App\Helpers\UniqueIdentifier;
 
 class RegisterController extends Controller
 {
@@ -48,7 +53,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -62,10 +67,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'id' => UniqueIdentifier::generate('users'),
+            'name' => ucfirst($data['name']),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // Create Profile
+        $profile = new Profile;
+        $user->profile()->save($profile);
+
+        // Create Confirmation
+        $confirmation = new Confirmation(['key' => str_random(100)]);
+        $user->confirmation()->save($confirmation);
+
+        Mail::to($user)->queue(new ConfirmationSend($user));
+
+        return $user;
     }
 }

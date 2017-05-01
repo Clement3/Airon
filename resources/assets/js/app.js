@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+require('./dropdown');
+require('./jquery.menu-aim');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,6 +16,8 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('favorite', require('./components/Favorite.vue'));
+Vue.component('avatar-preview', require('./components/AvatarPreview.vue'));
 
 const app = new Vue({
     el: '#app'

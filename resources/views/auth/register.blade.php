@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', Lang::get('app.register'))
+
 @section('content')
 <div class="container grid-480">
     <div class="columns">
@@ -14,7 +16,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="name">@lang('app.form.name')</label>
+                                <label class="form-label" for="name">@lang('form.name')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('name') ? ' is-danger' : '' }}" type="text" id="name" name="name" value="{{ old('name') }}" required />
@@ -26,7 +28,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="email">@lang('app.form.email')</label>
+                                <label class="form-label" for="email">@lang('form.email')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('email') ? ' is-danger' : '' }}" type="text" id="email" name="email" value="{{ old('email') }}" required />
@@ -38,7 +40,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="password">@lang('app.form.password')</label>
+                                <label class="form-label" for="password">@lang('form.password')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input{{ $errors->has('password') ? ' is-danger' : '' }}" type="password" id="password" name="password" required />
@@ -50,7 +52,7 @@
 
                         <div class="form-group">
                             <div class="col-3">
-                                <label class="form-label" for="password-confirm">@lang('app.form.confirm_password')</label>
+                                <label class="form-label" for="password-confirm">@lang('form.confirm_password')</label>
                             </div>
                             <div class="col-9">
                                 <input class="form-input" type="password" id="password-confirm" name="password_confirmation" required />

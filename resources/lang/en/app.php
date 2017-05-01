@@ -9,17 +9,26 @@ return [
     'settings' => 'Settings',
     'logout' => 'Logout',
     'reset_password' => 'Reset password',
+    'place_an_ad' => 'Place an Ad',
+ 
+    // Layouts
+    'back_to_top' => 'Back to top',
+    'copyright' => '© 2017 Monsterdeals, All Right Reserved.',
 
     // Auth Text
     'forgot_your_password' => 'Forgot Your Password?',
     'already_have_an_account' => 'Already have an account?',
     'send_password_reset_link' => 'Send Password Reset Link',
 
+    // Confirm
     'not-confirm' => 'You need to validate your e-mail.',
     'not-confirm-link' => 'Resend a confirmation e-mail',
-
+    
+    // Profile
     'registered_since' => 'Registered since :date',
-
+    'profile_of' => 'Profile of :name',
+    'all_ads' => 'All ads (:ads)',
+    
     // Ratings
     'ratings' => 'Ratings',
     'positives' => 'Positives',
@@ -44,38 +53,19 @@ return [
     'empty_addresses' => 'You have no addresses',
     'click_empty_addresses' => 'Click the button to create a new address.',
     'main' => 'Main',
+    'main_checkbox' => 'Make this address your primary address',
 
-    'form'  => [
-        'name' => 'Name',
-        'address_name' => 'Address Name',
-        'firstname' => 'Firstname',
-        'lastname' => 'Lastname',
-        'birthdate' => 'Birth date',
-
-        // Address
-        'fullname' => 'Full Name',
-        'address' => 'Address',
-        'address_more' => 'Apartment, suite, block, place, etc.',
-        'city' => 'City',
-        'state' => 'State/Province/Region',
-        'zipcode' => 'Postal Code',
-        'phone' => 'Phone',
-        'create_address' => 'Create Address',
-        'edit_address' => 'Edit Address',
-
-        // Email
-        'email' => 'E-mail',
-        'new_email' => 'New E-mail',
-
-        // Password
-        'password' => 'Password',
-        'current_password' => 'Current Password',
-        'old_password' => 'Old Password',
-        'new_password' => 'New Password',
-        'confirm_password' => 'Confirm Password',
-
-        // Misc
-        'remember_me' => 'Remember me',
-        'submit' => 'Save',
-    ],    
+    // Confirmation
+    'confirmation_send_successfully' => 'Confirmation send successfully',
+    'check_your_mail' => 'Please check your e-mail inbox',
+    'your_account_has_been_confirmed' => 'Your account has been successfully confirmed',
+    'confirmed_message' => 'You can create a ad or contact a seller.',
+    'confirmation_mail'  => [
+        'subject' => 'Confirm your account - Airon',
+        'title' => 'Hello, :name',
+        'message' => 'Please click on the button above to validate your account',
+        'action' => 'Confirm your account',
+        'button_not_working' => 'Button not working? Paste the following link into your browser:',
+        'footer' => 'Thanks,',
+    ],
 ];

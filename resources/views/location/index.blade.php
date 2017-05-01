@@ -1,8 +1,28 @@
 @extends('layouts.app')
 
+@section('title', Lang::get('app.my_addresses'))
+
 @section('content')
 <div class="container grid-960">
     <div class="columns">
+
+        <div class="column col-12">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('home') }}">
+                    @lang('app.home')
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ action('UserController@getSettings') }}">
+                    @lang('app.settings')
+                    </a>
+                </li>                
+                <li class="breadcrumb-item">
+                    @lang('app.my_addresses')
+                </li>
+            </ul>        
+        </div>
 
         @include('user.menu')   
          
@@ -32,7 +52,7 @@
                             <div class="address">
                                 <div class="address-heading">
                                     {{ $location->name }}
-                                    @if ($location->default) 
+                                    @if ($location->main) 
                                         <span class="label label-primary float-right">@lang('app.main')</span>
                                     @endif
                                 </div>
@@ -42,7 +62,7 @@
                                         <li>{{ $location->address }}</li>
                                         <li>{{ $location->address_more }}</li>
                                         <li>{{ $location->city }}, {{ $location->zipcode }}</li>
-                                        <li>France</li>
+                                        <li>{{ $location->country }}</li>
                                         <li>{{ $location->phone }}</li>
                                     </ul>                                
                                 </div>
@@ -58,7 +78,11 @@
                                     <form id="destroy-form" action="{{ action('LocationController@destroy', ['id' => $location->id]) }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                    </form>                                       
+                                    </form>  
+
+                                    @if (!$location->main) 
+                                    <a href="{{ action('LocationController@setMain', ['id' => $location->id]) }}" class="btn btn-primary btn-sm float-right">@lang('app.main')</a> 
+                                    @endif                                    
                                 </div>
                             </div>
                         </div>
