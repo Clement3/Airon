@@ -32,7 +32,6 @@ window.axios.defaults.headers.common = {
 
 window.axios.defaults.baseURL = 'http://airon.dev/api/';
 
-window.axios.defaults.baseURL
 /* Turbolinks */
 window.turbolinks = require("turbolinks");
 window.turbolinks.start();

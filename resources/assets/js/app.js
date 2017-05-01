@@ -6,8 +6,6 @@
  */
 
 require('./bootstrap');
-require('./dropdown');
-require('./jquery.menu-aim');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

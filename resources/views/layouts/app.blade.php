@@ -171,7 +171,7 @@
             </section>
             <section class="copyright">
                 <div class="container grid-960">
-                    <p class="text-center">@lang('app.copyright')</p>
+                    <p class="text-center">@lang('app.copyright', ['site' => config('app.name', 'Laravel')])</p>
                 </div>
             </section>           
         </footer>

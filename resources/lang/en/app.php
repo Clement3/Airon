@@ -13,7 +13,7 @@ return [
  
     // Layouts
     'back_to_top' => 'Back to top',
-    'copyright' => '© 2017 Monsterdeals, All Right Reserved.',
+    'copyright' => '© 2017 :site, All Right Reserved.',
 
     // Auth Text
     'forgot_your_password' => 'Forgot Your Password?',
