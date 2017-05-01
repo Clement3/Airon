@@ -3,7 +3,7 @@
 Application web développer avec le <a href="https://laravel.com/">Framework Laravel</a>.
 
 > **Démo:**
-> - [https://airon.herokuapp.com/](https://airon.herokuapp.com/).
+> - [http://airon.herokuapp.com/](http://airon.herokuapp.com/).
 > - Identifiant : demo@demo.com
 > - Mot de passe : demo12345
 
